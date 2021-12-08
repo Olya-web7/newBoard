@@ -1,0 +1,10 @@
+<mat-toolbar class="header justify-content-between mb-5 shadow">
+  <span><a [routerLink]="['/']">Retro Board</a></span>
+  <nav>
+    <app-dialog (emitText)="addColumn($event)" question="Add new column">
+      <button mat-button *ngIf="auth.isAuthenticated()">+Add</button>
+    </app-dialog>
+    <button [routerLink]="['/login']" mat-button *ngIf="!auth.isAuthenticated()">Login</button>
+    <button mat-button (click)="logout($event)" *ngIf="auth.isAuthenticated()">Logout</button>
+  </nav>
+</mat-toolbar>
