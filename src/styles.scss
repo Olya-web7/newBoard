@@ -33,20 +33,36 @@ $my-board-theme: mat.define-light-theme((
 // that you are using.
 @include mat.all-component-themes($my-board-theme);
 
-/* You can add global styles to this file, and also import other style files */
-@import "styles/variables";
-@import "~bootstrap/scss/functions";
-@import "~bootstrap/scss/variables";
-@import "~bootstrap/scss/mixins";
-@import "~bootstrap/scss/root";
-@import "~bootstrap/scss/reboot";
-@import "~bootstrap/scss/containers";
-@import "~bootstrap/scss/grid";
+@import 'main.style.scss';
+@import '../node_modules/bulma/bulma.sass';
 
-@import "~bootstrap/scss/utilities"; // Configures the utility classes that should be generated
-@import "~bootstrap/scss/utilities/api"; // Generates the actual utility classes
+// @use '@angular/material' as mat;
+// @include mat.core();
+// $my-board-primary: mat.define-palette(mat.$indigo-palette);
+// $my-board-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+// $my-board-warn: mat.define-palette(mat.$red-palette);
+// $my-board-theme: mat.define-light-theme((
+//   color: (
+//     primary: $my-board-primary,
+//     accent: $my-board-accent,
+//     warn: $my-board-warn,
+//   )
+// ));
+// @include mat.all-component-themes($my-board-theme);
+// @import "styles/variables";
+// @import "~bootstrap/scss/functions";
+// @import "~bootstrap/scss/variables";
+// @import "~bootstrap/scss/mixins";
+// @import "~bootstrap/scss/root";
+// @import "~bootstrap/scss/reboot";
+// @import "~bootstrap/scss/containers";
+// @import "~bootstrap/scss/grid";
+// @import "~bootstrap/scss/utilities";
+// @import "~bootstrap/scss/utilities/api";
+// @import "styles/reset";
 
-@import "styles/reset";
+// html, body { height: 100%; }
+// body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

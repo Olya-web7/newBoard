@@ -1,0 +1,35 @@
+<div class="wrap">
+  <div class="navbar has-background-dark">
+    <div class="navbar-brand">
+      <div class="navbar-item">
+        <h1 class="name logo">retro board</h1>
+      </div>
+    </div>
+  </div>
+
+  <div class="board-wrap">
+    <div class="board-columns" cdkDropListGroup>
+
+      <div class="board-column">
+
+        <h2 class="column-title">todo</h2>
+
+        <div class="tasks"
+        cdkDropList
+        #todoList="cdkDropList"
+        [cdkDropListData]="todo"
+        (cdkDropListDropped)="drop($event)">
+          <div class="task" *ngfor='let item of todo' cdkDrag>something to do</div>
+        </div>
+      </div>
+
+      <div class="board-column">
+        <div class="column-title">to improve</div>
+      </div>
+
+      <div class="board-column">
+        <div class="column-title">done</div>
+      </div>
+    </div>
+  </div>
+</div>
