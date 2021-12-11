@@ -11,7 +11,6 @@ import { BoardItemComponent } from './column/board-item.component';
 import { FormsModule } from '@angular/forms';
 import { CommentComponent } from './comment/comment.component';
 import { DialogModule } from '../components/dialog/dialog.module';
-// import { ColorComponent } from './color/color.component';
 
 @NgModule({
   declarations: [

@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HeaderModule } from './header/header.module';
 import { BoardModule } from './board/board.module';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
@@ -19,6 +18,7 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { HomepageComponent } from './homepage/homepage.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+// import { HomepageModule } from './homepage/homepage.module';
 
 @NgModule({
   declarations: [
@@ -29,8 +29,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,
-    HeaderModule,
+    BrowserAnimationsModule,    
     BoardModule,
     FormsModule,
     ReactiveFormsModule,
@@ -42,7 +41,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     ShareModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
-    DragDropModule    
+    DragDropModule,
+    // HomepageModule
   ],
   providers: [],
   bootstrap: [AppComponent]

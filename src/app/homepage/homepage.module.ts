@@ -1,16 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-// import {DragDropModule} from '@angular/cdk/drag-drop';
-// import { DialogModule } from '../components/dialog/dialog.module';
-
+import { HomepageComponent } from './homepage.component';
+import { DialogModule } from '../components/dialog/dialog.module';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    HomepageComponent
+  ],
   imports: [
-    CommonModule,
-    // DragDropModule,
-    // DialogModule
+    CommonModule,    
+    DialogModule,
+    DragDropModule
+  ],
+  exports: [
+    HomepageComponent
   ]
 })
 export class HomepageModule { }
