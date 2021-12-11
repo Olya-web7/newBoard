@@ -4,12 +4,12 @@
       <div class="navbar-item">        
         <span class="name logo"><a [routerLink]="['/']">Retro Board</a></span>
       </div>
-      <button [routerLink]="['/login']" mat-button>Login</button>
-    <button mat-button>Logout</button>
+      <button [routerLink]="['/login']" mat-button *ngIf="!auth.isAuthenticated()">Login</button>
+      <button mat-button (click)="logout($event)" *ngIf="auth.isAuthenticated()">Logout</button>
     </div>
   </div>
   <div class="board">  
-    <button mat-fab>+Add</button>    
+    <button mat-fab *ngIf="auth.isAuthenticated()">+Add</button>    
     <!-- <app-dialog><button mat-fab>+Add</button></app-dialog> -->
   </div>
 
