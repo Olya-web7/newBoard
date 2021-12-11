@@ -18,7 +18,7 @@ import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { HomepageComponent } from './homepage/homepage.component';
-import {DragDropModule} from '@angular/cdk/drag-drop';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -42,7 +42,7 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     ShareModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
-    DragDropModule
+    DragDropModule    
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -23,11 +23,6 @@ export class HomepageComponent implements OnInit {
       'some random1',
       'some random2',
       'some random3'
-    ]),
-    new Column('restodoearch', [
-      'some random1',
-      'some random2',
-      'some random3'
     ])
   ]);
 

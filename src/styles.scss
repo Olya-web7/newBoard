@@ -33,7 +33,6 @@ $my-board-theme: mat.define-light-theme((
 // that you are using.
 @include mat.all-component-themes($my-board-theme);
 
-@import 'main.style.scss';
 @import '../node_modules/bulma/bulma.sass';
 
 // @use '@angular/material' as mat;

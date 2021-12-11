@@ -1,27 +1,28 @@
 <div class="wrap">
   <div class="navbar has-background-dark">
     <div class="navbar-brand">
-      <div class="navbar-item">
-        <h1 class="name logo">retro board</h1>
+      <div class="navbar-item">        
+        <span class="name logo"><a [routerLink]="['/']">Retro Board</a></span>
       </div>
+      <button [routerLink]="['/login']" mat-button>Login</button>
+    <button mat-button>Logout</button>
     </div>
+  </div>
+  <div class="board">      
+    <button mat-fab>+Add</button>      
   </div>
 
   <div class="board-wrap">
     <div class="board-columns" cdkDropListGroup>
-
       <div class="board-column" *ngFor='let column of board.columns'>
-
-        <h2 class="column-title">{{column.name}}</h2>
-
+        <h2 class="column-title">{{column.name | titlecase}}</h2>
         <div class="tasks"
           cdkDropList
           [cdkDropListData]="column.tasks"
           (cdkDropListDropped)="drop($event)">
           <div class="task" *ngFor='let item of column.tasks' cdkDrag>{{item}}</div>
         </div>
-      </div>      
-      
+      </div>
     </div>
   </div>
 </div>
