@@ -10,6 +10,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from "@angular/router";
 import { TasksComponent } from './tasks/tasks.component';
 import { MatInputModule } from '@angular/material/input';
+import { FormsModule } from "@angular/forms";
 
 
 const routes = [
@@ -30,7 +31,8 @@ const routes = [
     DragDropModule,
     AppRoutingModule,
     RouterModule.forChild(routes),
-    MatInputModule
+    MatInputModule,
+    FormsModule
   ],
   exports: [
     HomepageComponent

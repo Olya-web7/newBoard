@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Input, Output,  } from '@angular/core';
+import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 import { AuthService } from 'src/app/auth/auth.service';
 import { Card } from 'src/app/models/models';
 import { HomepageService } from '../homepage.service';
@@ -12,13 +12,15 @@ export class TasksComponent implements OnInit {
 
   cards!: Card[]
 
-  @Input() item!: Card
+  @Input() item!: Card;
+
   @Output() emitText: EventEmitter<Comment> = new EventEmitter();
   @Output() emitCardItem: EventEmitter<{card: Card}> = new EventEmitter();
   @Output() emitDeleteCard: EventEmitter<number> = new EventEmitter();
 
-  commentInput = ''
+  commentInput = '';
   open = false;
+  
   constructor(
     public auth: AuthService,
     private homepageService: HomepageService,

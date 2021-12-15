@@ -11,7 +11,7 @@
     </button>
     <span></span>
   
-    <button mat-icon-button class="comment-btn">
+    <button mat-icon-button class="comment-btn" (click)='open=!open'>
       <mat-icon class="icon">comment</mat-icon>
     </button>
     <span></span>
@@ -21,12 +21,13 @@
     </button>
   </div>
   
-  <div>
+  <div *ngIf='open'>
     <mat-form-field class="form-field">
       <mat-label>Leave a comment</mat-label>
-      <textarea matInput></textarea>
+      <textarea matInput [(ngModel)]="commentInput" (mousedown)='$event.stopPropagation()'></textarea>
       <button
         mat-button
+        *ngIf='commentInput'
         matSuffix
         mat-icon-button
         color='primary'
