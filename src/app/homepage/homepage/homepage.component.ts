@@ -21,6 +21,12 @@ export class HomepageComponent implements OnInit {
 
   ngOnInit() { }
 
+  // addColumn(event: string) {
+  //   if (event) {
+  //     this.homepageService.addColumn(event)
+  //   }
+  // }
+
   onAddCard() {}
 
   logout(event: Event) {

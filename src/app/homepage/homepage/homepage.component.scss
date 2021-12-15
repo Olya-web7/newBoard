@@ -4,6 +4,11 @@
   height: 100%;
 }
 
+.column-title-wrap {
+  display: flex;
+  justify-content: space-between;
+}
+
 .name {
   font-size: 20px;
   font-family: 'Lato', sans-serif;  
@@ -15,6 +20,10 @@ a {
 }
 button {
   color: #60cee9;
+}
+
+.add-task-btn {
+  color:#292929;
 }
 
 .board {
@@ -32,6 +41,7 @@ button {
 .board-wrap {
   display: flex;
   flex-grow: 1;
+  min-height: 200px;
   overflow-x: auto;
   background-color: #292929;
 
@@ -69,10 +79,12 @@ button {
 
 .tasks {
   flex-grow: 1;
+  min-width: 200px;
 }
 
 .task {
   display: flex;
+  flex-direction: column;
   padding: 15px 12px;
   background: rgba(#141414, 0.3);
   color: rgb(19, 18, 18);
@@ -92,7 +104,7 @@ button {
 }
 
 .cdk-drag-placeholder {
-  opacity: 0;
+  opacity: 0.3;
 }
 
 .cdk-drag-animating {
