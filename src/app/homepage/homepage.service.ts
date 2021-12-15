@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { Column } from '../models/models';
+import { Card, Column } from '../models/models';
 
 @Injectable({
   providedIn: 'root'
@@ -33,12 +33,33 @@ export class HomepageService {
     this.board$.next([...this.board]);
   }
 
-  addCard(text: string, columnId: number) {}
+  addCard(text: string, columnId: number) {
+    
+  }
   
   deleteCard(cardId: number, columnId: number) {}
   
   addLike(cardId: number, columnId: number) {}
   
-  addComment() { }
+  addComment(columnId: number, cardId: number, text: string) { 
+    this.board = this.board.map((column: Column) => {
+      if (column.id === columnId) {
+        const list = column.list.map((card: Card) => {
+          if (card.id === cardId) {
+            let newComment = {
+              id: Date.now(),
+              text,
+            };
+            card.comments?.push(newComment);
+            localStorage.setItem('Comment', JSON.stringify(card.comments));
+          }
+          return card;
+        });
+        column.list = list;
+      }
+      return column;
+    });
+    this.board$.next([...this.board]);
+  }
   
 }

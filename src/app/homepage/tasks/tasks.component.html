@@ -30,8 +30,8 @@
         *ngIf='commentInput'
         matSuffix
         mat-icon-button
-        color='primary'
         class="icon-confirm"
+        (click)="onCommentTextEmit(item.id)"
       >
         <mat-icon>done</mat-icon>
       </button>
