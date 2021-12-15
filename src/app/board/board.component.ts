@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { BoardService } from '../board.service';
-import { Card, Column } from '../models';
+import { Card, Column } from '../models/models';
 import { AuthService } from '../auth/auth.service';
 
 @Component({

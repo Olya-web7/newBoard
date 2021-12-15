@@ -9,20 +9,25 @@
     </div>
   </div>
   <div class="board">  
-    <button mat-fab *ngIf="auth.isAuthenticated()">+Add</button>    
-    <!-- <app-dialog><button mat-fab>+Add</button></app-dialog> -->
+    <button mat-fab *ngIf="auth.isAuthenticated()">+Add</button>
   </div>
+
 
   <div class="board-wrap">
     <div class="board-columns" cdkDropListGroup>
-      <div class="board-column" *ngFor='let column of board.columns'>
-        <h2 class="column-title">{{column.name | titlecase}}</h2>
+      <div class="board-column" *ngFor="let column of homepageService.getBoard$() | async">
+        <h2 class="column-title">{{column.title | titlecase}}</h2>
+        <button mat-fab>+Add</button>
+
         <div class="tasks"
           cdkDropList
-          [cdkDropListData]="column.tasks"
+          [cdkDropListData]="column.list"
           (cdkDropListDropped)="drop($event)">
-          <div class="task" *ngFor='let item of column.tasks' cdkDrag>{{item}}</div>
+          <div class="task" *ngFor='let item of column.list' cdkDrag>
+            <app-tasks></app-tasks>
+          </div>
         </div>
+        
       </div>
     </div>
   </div>
