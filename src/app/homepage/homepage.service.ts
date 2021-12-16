@@ -11,7 +11,6 @@ export class HomepageService {
     {
       id: 1, title: 'Went well', list: [
         { text: 'sample task' },
-        { text: 'sample task' }, 
     ] },
     {
       id: 2, title: 'To do', list: [
@@ -22,12 +21,12 @@ export class HomepageService {
   private board: Column[] = this.initBoard
   private board$ = new BehaviorSubject<Column[]>(this.initBoard)
 
-  getBoard$() {
+  getBoard$() {  
     return this.board$.asObservable();
-  } 
+  }  
 
   getBoard() {
-    return JSON.parse(localStorage.getItem('board') as string);
+    return JSON.parse(localStorage.getItem('board') as string) || [];
   }
 
   addColumn(title: string) {
@@ -36,12 +35,12 @@ export class HomepageService {
       title: title,
       list: [],
     };
-    this.board = this.getBoard();
-    this.board.push(newColumn);
-    localStorage.setItem('board', JSON.stringify(this.board) as string)
-    this.board$.next([...this.board]);
+
+    this.board = [...this.getBoard(), newColumn];
+    localStorage.setItem('board', JSON.stringify(this.board));
+    this.board$.next([...this.getBoard()]);
   }
 
-  addCard(text: string, columnId: number) {}  
+  addCard(text: string, columnId: number) { } 
   
 }

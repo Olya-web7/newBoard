@@ -11,7 +11,7 @@ import { HomepageService } from '../homepage.service';
   styleUrls: ['./homepage.component.scss']
 })
 export class HomepageComponent implements OnInit {
-  board!: Column[]
+  board: Column[] = []
 
   constructor(
     private router: Router,
@@ -19,9 +19,8 @@ export class HomepageComponent implements OnInit {
     public homepageService: HomepageService
   ) { } 
 
-  ngOnInit(): void {
-    // this.board = JSON.parse(localStorage.getItem('board') as string);
-   }
+  ngOnInit() {
+  }
 
   addColumn(event: string) {
     if (event) {
