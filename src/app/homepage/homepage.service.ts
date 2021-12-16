@@ -34,12 +34,12 @@ export class HomepageService {
     // return JSON.parse(localStorage.getItem('board') as string);
   } 
 
-  addColumn(title: string) {
+  addColumn(title: string) {    
     let newColumn: Column = {
       title: title,
       list: [],
     };
-    this.board = [...this.board, newColumn];
+    this.board.push(newColumn);
     this.board$.next([...this.board]);
   }
 

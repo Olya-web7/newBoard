@@ -22,6 +22,7 @@ export class HomepageComponent implements OnInit {
   ngOnInit() { }
 
   addColumn(event: any) {
+    
     if (event) {
       this.homepageService.addColumn(event)
     }
