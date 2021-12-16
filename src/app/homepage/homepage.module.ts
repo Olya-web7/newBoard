@@ -11,6 +11,7 @@ import { RouterModule } from "@angular/router";
 import { TasksComponent } from './tasks/tasks.component';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from "@angular/forms";
+import {MatDialogModule} from '@angular/material/dialog';
 
 const routes = [
   { path: '', component: HomepageComponent }
@@ -31,7 +32,9 @@ const routes = [
     AppRoutingModule,
     RouterModule.forChild(routes),
     MatInputModule,
-    FormsModule
+    FormsModule,
+    MatDialogModule,
+    DialogModule
   ],
   exports: [
     HomepageComponent

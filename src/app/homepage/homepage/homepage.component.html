@@ -8,9 +8,10 @@
       <button mat-button (click)="logout($event)" *ngIf="auth.isAuthenticated()">Logout</button>
     </div>
   </div>
-  <div class="board">  
-    <!-- <button mat-fab (emitText)="addColumn($event)">+Add</button> -->
-    <button mat-fab *ngIf="auth.isAuthenticated()">+Add</button>
+  <div class="board">
+    <app-dialog (emitText)="addColumn($event)">
+      <button mat-fab *ngIf="auth.isAuthenticated()">+Add</button>
+    </app-dialog>
   </div>
 
 
@@ -19,7 +20,10 @@
       <div class="board-column" *ngFor="let column of homepageService.getBoard() | async">
         <div class="column-title-wrap">
           <h2 class="column-title">{{column.title | titlecase}}</h2>
-          <button mat-fab (emitText)="addColumn($event)" class="add-task-btn">+Add</button>
+          
+          <app-dialog  question="Add new task">
+            <button mat-fab class="add-task-btn">+Add</button>
+          </app-dialog>
         </div>
 
         <div class="tasks"
