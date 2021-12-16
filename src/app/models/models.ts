@@ -11,7 +11,7 @@ export interface Card {
 }
 
 export interface Column {
-  id?: number,
-  title?: string,
+  id: any,
+  title: string,
   list: Card[]
 }

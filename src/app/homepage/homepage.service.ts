@@ -32,12 +32,14 @@ export class HomepageService {
 
   addColumn(title: string) {
     let newColumn: Column = {
+      id: new Date(),
       title: title,
       list: [],
     };
-    this.board.push(newColumn);
-    localStorage.setItem('board', JSON.stringify(this.board) as string)
-    this.board$.next([...this.board]);
+    const board = this.getBoard();
+    board.push(newColumn);
+    localStorage.setItem('board', JSON.stringify(board) as string)
+    this.board$.next([...board]);
   }
 
   addCard(text: string, columnId: number) {}  
