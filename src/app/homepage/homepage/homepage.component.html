@@ -1,7 +1,7 @@
 <div class="wrap">
   <div class="navbar has-background-dark">
     <div class="navbar-brand">
-      <div class="navbar-item">        
+      <div class="navbar-item">
         <span class="name logo"><a [routerLink]="['/']">Retro Board</a></span>
       </div>
       <button [routerLink]="['/login']" mat-button *ngIf="!auth.isAuthenticated()">Login</button>
@@ -9,30 +9,29 @@
     </div>
   </div>
   <div class="board">  
-    <!-- <button mat-fab *ngIf="auth.isAuthenticated()" (emitText)="addColumn($event)">+Add</button> -->
+    <!-- <button mat-fab (emitText)="addColumn($event)">+Add</button> -->
     <button mat-fab *ngIf="auth.isAuthenticated()">+Add</button>
-
   </div>
 
 
   <div class="board-wrap">
-    <div class="board-columns" cdkDropListGroup>
+    <div cdkDropListGroup class="board-columns">
       <div class="board-column" *ngFor="let column of homepageService.getBoard() | async">
         <div class="column-title-wrap">
           <h2 class="column-title">{{column.title | titlecase}}</h2>
-          <button mat-fab class="add-task-btn" (click)='onAddCard()'>+Add</button>
+          <button mat-fab (emitText)="addColumn($event)" class="add-task-btn">+Add</button>
         </div>
 
         <div class="tasks"
           cdkDropList
           [cdkDropListData]="column.list"
-          (cdkDropListDropped)="drop($event)">
-          <div class="task" *ngFor='let item of column.list' cdkDrag>            
-            <app-tasks [item]='item'>
-              <div *ngFor='let comment of item.comments'>
-                <app-comment [comment]='comment'></app-comment>
-              </div>
-            </app-tasks>
+          (cdkDropListDropped)="drop($event)"
+        >
+
+          <div cdkDrag class="task" 
+            *ngFor='let item of column.list'>
+            {{item.text}}
+            <app-tasks [item]="item"></app-tasks>
           </div>
         </div>
         

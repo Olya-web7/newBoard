@@ -21,13 +21,11 @@ export class HomepageComponent implements OnInit {
 
   ngOnInit() { }
 
-  // addColumn(event: string) {
-  //   if (event) {
-  //     this.homepageService.addColumn(event)
-  //   }
-  // }
-
-  onAddCard() {}
+  addColumn(event: any) {
+    if (event) {
+      this.homepageService.addColumn(event)
+    }
+  }
 
   logout(event: Event) {
     event.preventDefault();
