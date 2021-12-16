@@ -17,7 +17,7 @@
 
   <div class="board-wrap">
     <div cdkDropListGroup class="board-columns">
-      <div class="board-column" *ngFor="let column of homepageService.getBoard() | async">
+      <div class="board-column" *ngFor="let column of homepageService.getBoard$() | async">
         <div class="column-title-wrap">
           <h2 class="column-title">{{column.title | titlecase}}</h2>
           
