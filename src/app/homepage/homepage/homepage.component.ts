@@ -19,9 +19,11 @@ export class HomepageComponent implements OnInit {
     public homepageService: HomepageService
   ) { } 
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    // this.board = JSON.parse(localStorage.getItem('board') as string);
+   }
 
-  addColumn(event: string) {    
+  addColumn(event: string) {
     if (event) {
       this.homepageService.addColumn(event)
     }
