@@ -36,6 +36,7 @@ export class HomepageService {
       title: title,
       list: [],
     };
+    this.board = this.getBoard();
     this.board.push(newColumn);
     localStorage.setItem('board', JSON.stringify(this.board) as string)
     this.board$.next([...this.board]);
