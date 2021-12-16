@@ -19,11 +19,11 @@ export class HomepageService {
     ] }
   ]
   private board: Column[] = this.initBoard
-  private board$ = new BehaviorSubject<Column[]>(this.initBoard)
+  // private board$ = new BehaviorSubject<Column[]>(this.initBoard)
 
-  getBoard$() {  
-    return this.board$.asObservable();
-  }  
+  // getBoard$() {  
+  //   return this.board$.asObservable();
+  // }  
 
   getBoard() {
     return JSON.parse(localStorage.getItem('board') as string) || [];
@@ -38,7 +38,7 @@ export class HomepageService {
 
     this.board = [...this.getBoard(), newColumn];
     localStorage.setItem('board', JSON.stringify(this.board));
-    this.board$.next([...this.getBoard()]);
+    // this.board$.next([...this.getBoard()]);
   }
 
   addCard(text: string, columnId: number) { } 
