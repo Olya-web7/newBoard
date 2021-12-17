@@ -18,7 +18,7 @@ export class DialogComponent implements OnInit {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogBodyComponent, {
-      width: '400px',
+      width: '500px',
       data: { question: this.question }
     });
 

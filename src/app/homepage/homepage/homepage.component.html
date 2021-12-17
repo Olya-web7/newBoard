@@ -1,0 +1,46 @@
+<div class="wrap">
+  <div class="navbar has-background-dark">
+    <div class="navbar-brand">
+      <div class="navbar-item">
+        <span class="name logo"><a [routerLink]="['/']">Retro Board</a></span>
+      </div>
+      <button [routerLink]="['/login']" mat-button *ngIf="!auth.isAuthenticated()">Login</button>
+      <button mat-button (click)="logout($event)" *ngIf="auth.isAuthenticated()">Logout</button>
+    </div>
+  </div>
+  <div class="board">
+    <app-dialog (emitText)="addColumn($event)">
+      <button mat-fab *ngIf="auth.isAuthenticated()">+Add</button>
+    </app-dialog>
+    
+  </div>
+
+  <div class="board-wrap">
+    <div cdkDropListGroup class="board-columns">
+      <div class="board-column" *ngFor="let column of homepageService.getBoard()">
+        <div class="column-title-wrap">
+          <h2 class="column-title">{{column.title | titlecase}}</h2>          
+          
+          <app-dialog  question="Add new task">
+            <button mat-fab class="add-task-btn">+Add</button>
+          </app-dialog>
+          
+        </div>
+
+        <div class="tasks"
+          cdkDropList
+          [cdkDropListData]="column.list"
+          (cdkDropListDropped)="drop($event)"
+        >
+
+          <div cdkDrag class="task" 
+            *ngFor='let item of column.list'>
+            {{item.text}}
+            <app-tasks [item]="item"></app-tasks>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>

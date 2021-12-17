@@ -1,0 +1,24 @@
+<div class="tasks-container">
+
+  <div *ngFor="let item of cards" class="tasks-wrap" >
+    <div class="item-text">{{ item.text | titlecase }}</div>
+  </div>
+  
+  <div class="icon-container">
+  
+    <button mat-icon-button>
+      <mat-icon class="icon">favorite_border</mat-icon>
+    </button>
+    <span></span>
+  
+    <button mat-icon-button class="comment-btn" >
+      <mat-icon class="icon">comment</mat-icon>
+    </button>
+    <span></span>
+  
+    <button mat-icon-button class="icon-delete">
+      <mat-icon>delete_outline</mat-icon>
+    </button>
+  </div>
+
+</div>

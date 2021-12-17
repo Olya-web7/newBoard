@@ -4,14 +4,14 @@ export interface Comment {
 }
 
 export interface Card {
-  id: number,
+  id?: number,
   text: string,
-  like: number,
-  comments: Comment[]
+  like?: number,
+  comments?: Comment[]
 }
 
 export interface Column {
-  id: number,
-  title?: string,
+  id: any,
+  title: string,
   list: Card[]
 }
