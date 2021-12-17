@@ -12,17 +12,19 @@
     <app-dialog (emitText)="addColumn($event)">
       <button mat-fab *ngIf="auth.isAuthenticated()">+Add</button>
     </app-dialog>
+    
   </div>
 
   <div class="board-wrap">
     <div cdkDropListGroup class="board-columns">
       <div class="board-column" *ngFor="let column of homepageService.getBoard()">
         <div class="column-title-wrap">
-          <h2 class="column-title">{{column.title | titlecase}}</h2>
+          <h2 class="column-title">{{column.title | titlecase}}</h2>          
           
           <app-dialog  question="Add new task">
             <button mat-fab class="add-task-btn">+Add</button>
           </app-dialog>
+          
         </div>
 
         <div class="tasks"
