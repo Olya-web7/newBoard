@@ -19,7 +19,10 @@
     <div cdkDropListGroup class="board-columns">
       <div class="board-column" *ngFor="let column of homepageService.getBoard()">
         <div class="column-title-wrap">
-          <h2 class="column-title">{{column.title | titlecase}}</h2>          
+          <h2 class="column-title">{{column.title | titlecase}}<sup>
+            <a (click)='deleteColumn(column.id)'><mat-icon>delete_outline</mat-icon></a></sup>
+          </h2>
+          
           
           <app-dialog  question="Add new task">
             <button mat-fab class="add-task-btn">+Add</button>

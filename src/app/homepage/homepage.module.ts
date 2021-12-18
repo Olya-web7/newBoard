@@ -11,7 +11,7 @@ import { RouterModule } from "@angular/router";
 import { TasksComponent } from './tasks/tasks.component';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from "@angular/forms";
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog'; 
 
 const routes = [
   { path: '', component: HomepageComponent }

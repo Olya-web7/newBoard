@@ -19,11 +19,6 @@ export class HomepageService {
     ] }
   ]
   private board: Column[] = this.initBoard
-  // private board$ = new BehaviorSubject<Column[]>(this.initBoard)
-
-  // getBoard$() {  
-  //   return this.board$.asObservable();
-  // }  
 
   getBoard() {
     return JSON.parse(localStorage.getItem('board') as string) || [];
@@ -39,6 +34,12 @@ export class HomepageService {
     this.board = [...this.getBoard(), newColumn];
     localStorage.setItem('board', JSON.stringify(this.board));
     // this.board$.next([...this.getBoard()]);
+  }
+
+  deleteColumn(id: any) {
+    const board = this.getBoard()
+      .filter((column: Column) => column.id != id);
+    localStorage.setItem('board', JSON.stringify(board));
   }
 
   addCard(text: string, columnId: number) { } 

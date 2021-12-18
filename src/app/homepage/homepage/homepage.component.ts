@@ -28,6 +28,13 @@ export class HomepageComponent implements OnInit {
     }
   }
 
+  deleteColumn(id: any) {
+    let confirmed = confirm('r u sure?');
+    if (confirmed) {
+      this.homepageService.deleteColumn(id);
+    }
+  }
+
   logout(event: Event) {
     event.preventDefault();
     this.auth.logout();
