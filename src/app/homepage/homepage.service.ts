@@ -68,8 +68,9 @@ export class HomepageService {
   deleteCard(cardId: number, columnId: number) {
     this.board = this.board.map((column: Column) => {
       if (column.id === columnId) {
-        column.list = column.list.filter((card: Card) => card.id !== cardId);
+        column.list = column.list.filter((card: Card) => card.id != cardId);
       }
+      localStorage.setItem('board', JSON.stringify(this.board));
       return column;
     });
     this.board$.next([...this.board]);
