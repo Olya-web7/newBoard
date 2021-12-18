@@ -13,14 +13,15 @@ import { HomepageService } from '../homepage.service';
 export class HomepageComponent implements OnInit {
   board!: Column[]
 
-
   constructor(
     private router: Router,
     public auth: AuthService,
     public homepageService: HomepageService
   ) { } 
 
-  ngOnInit() {}
+  ngOnInit() {
+    return this.homepageService.getBoard();
+  }
 
   addColumn(event: string) {
     if (event) {
@@ -29,7 +30,7 @@ export class HomepageComponent implements OnInit {
   }
 
   deleteColumn(id: any) {
-    let confirmed = confirm(`Do u want to delete the column ${id}`);
+    let confirmed = confirm(`Do you want to delete the column ${id}`);
     if (confirmed) {
       this.homepageService.deleteColumn(id);
     }
@@ -39,6 +40,10 @@ export class HomepageComponent implements OnInit {
     if (text) {
       this.homepageService.addTask(text, columnId);
     }
+  }
+
+  onDelete(cardId: number, columnId: number) {
+    this.homepageService.deleteCard(cardId, columnId)
   }
 
   logout(event: Event) {

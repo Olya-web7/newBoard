@@ -19,16 +19,19 @@ export class HomepageService {
         { id: 2, text: 'sample task' }
     ] }
   ]
-  private board: Column[] = [];
-  private board$ = new BehaviorSubject<any[]>([]);
+  private board: Column[] = [...this.initBoard];
+  private board$ = new BehaviorSubject<Column[]>(this.board);
 
   getBoard$() {
     return this.board$.asObservable()
   }
 
+  initialBoard() {
+    return localStorage.setItem('board', JSON.stringify(this.initBoard));
+  }
+
   getBoard() {
-    this.board = JSON.parse(localStorage.getItem('board') as string);
-    // return this.board$.next([...this.board]);
+    return JSON.parse(localStorage.getItem('board') as string);
   }
 
   addColumn(title: string) {
@@ -38,7 +41,9 @@ export class HomepageService {
       list: [],
     };
 
-    this.board = [...this.board, newColumn];
+    this.board = this.getBoard();
+
+    this.board.push(newColumn);
     localStorage.setItem('board', JSON.stringify(this.board));
     this.board$.next([...this.board]);
   }
@@ -61,9 +66,13 @@ export class HomepageService {
       comments: [],
     };
 
-    const board = this.board
+    this.board
       .map((column: Column) => column.list.push(newTask));
     // localStorage.setItem('column', JSON.stringify(board));
   } 
+
+  deleteCard(cardId: number, columnId: number) {
+
+  }
   
 }
