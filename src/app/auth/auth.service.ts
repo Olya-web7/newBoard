@@ -54,7 +54,7 @@ export class AuthService {
     if (response) {
       localStorage.setItem('fb-token', response.idToken)
     } else {
-      localStorage.clear()
+      localStorage.removeItem('fb-token')
     }
   }
 }

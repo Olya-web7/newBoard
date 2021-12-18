@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import { Card, Column } from '../../models/models';
 import { AuthService } from '../../auth/auth.service';
@@ -11,7 +11,8 @@ import { HomepageService } from '../homepage.service';
   styleUrls: ['./homepage.component.scss']
 })
 export class HomepageComponent implements OnInit {
-  board: Column[] = []
+  board!: Column[]
+
 
   constructor(
     private router: Router,
@@ -19,8 +20,7 @@ export class HomepageComponent implements OnInit {
     public homepageService: HomepageService
   ) { } 
 
-  ngOnInit(): void {
-  }
+  ngOnInit() {}
 
   addColumn(event: string) {
     if (event) {
@@ -29,9 +29,15 @@ export class HomepageComponent implements OnInit {
   }
 
   deleteColumn(id: any) {
-    let confirmed = confirm('r u sure?');
+    let confirmed = confirm(`Do u want to delete the column ${id}`);
     if (confirmed) {
       this.homepageService.deleteColumn(id);
+    }
+  }
+
+  onAddCard(text: string, columnId: number) {
+    if (text) {
+      this.homepageService.addTask(text, columnId);
     }
   }
 
@@ -41,7 +47,7 @@ export class HomepageComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
-  drop(event: CdkDragDrop<Card[]>) {
+  drop(event: CdkDragDrop<any[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {

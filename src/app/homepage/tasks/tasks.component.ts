@@ -12,11 +12,12 @@ export class TasksComponent implements OnInit {
 
   cards!: Card[]
 
-  @Input() item!: Card;
-
-  @Output() emitText: EventEmitter<{id: number; text: string}> = new EventEmitter();
-
-  commentInput = '';
+  @Input() item: any
+  @Output() emitText: EventEmitter<{ id: number; text: string }> = new EventEmitter();
+  
+  @Output() emitCardItem: EventEmitter<{task: Card}> = new EventEmitter();
+  @Output() emitDeleteCard: EventEmitter<number> = new EventEmitter();
+  commentInput = ''
   open = false;
 
   constructor(
@@ -24,10 +25,15 @@ export class TasksComponent implements OnInit {
     private homepageService: HomepageService,
   ) { }
 
-  ngOnInit() {}
+  ngOnInit(): void { }
 
-  onCommentTextEmit(id: number | any) {
-    this.emitText.emit({ id, text: this.commentInput });
-    this.commentInput = '';
+  onOpenComment() {
+    this.open = !this.open;
   }
+
+  onCommentTextEmmit(id: number) {
+    this.emitText.emit({ id, text: this.commentInput });
+    this.commentInput = ''
+  }
+
 }

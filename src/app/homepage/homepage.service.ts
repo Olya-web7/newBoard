@@ -10,18 +10,25 @@ export class HomepageService {
   private initBoard = [
     {
       id: 1, title: 'Went well', list: [
-        { text: 'sample task' },
-    ] },
+      {id: 1, text: 'sample task'}
+      ]
+    },
     {
       id: 2, title: 'To do', list: [
-        { text: 'sample task' },
-        { text: 'sample task' },
+        { id: 1, text: 'sample task' },
+        { id: 2, text: 'sample task' }
     ] }
   ]
-  private board: Column[] = this.initBoard
+  private board: Column[] = [];
+  private board$ = new BehaviorSubject<any[]>([]);
+
+  getBoard$() {
+    return this.board$.asObservable()
+  }
 
   getBoard() {
-    return JSON.parse(localStorage.getItem('board') as string) || [];
+    this.board = JSON.parse(localStorage.getItem('board') as string);
+    // return this.board$.next([...this.board]);
   }
 
   addColumn(title: string) {
@@ -31,17 +38,32 @@ export class HomepageService {
       list: [],
     };
 
-    this.board = [...this.getBoard(), newColumn];
+    this.board = [...this.board, newColumn];
     localStorage.setItem('board', JSON.stringify(this.board));
-    // this.board$.next([...this.getBoard()]);
+    this.board$.next([...this.board]);
   }
 
   deleteColumn(id: any) {
-    const board = this.getBoard()
+    this.board = this.board
       .filter((column: Column) => column.id != id);
-    localStorage.setItem('board', JSON.stringify(board));
+    localStorage.setItem('board', JSON.stringify(this.board));
+    this.board$.next([...this.board]);
   }
 
-  addCard(text: string, columnId: number) { } 
+  getList() {
+    return JSON.parse(localStorage.getItem('column') as string);
+  }
+
+  addTask(text: string, columnId: number) {
+    let newTask: any = {
+      id: Date.now(),
+      text, 
+      comments: [],
+    };
+
+    const board = this.board
+      .map((column: Column) => column.list.push(newTask));
+    // localStorage.setItem('column', JSON.stringify(board));
+  } 
   
 }

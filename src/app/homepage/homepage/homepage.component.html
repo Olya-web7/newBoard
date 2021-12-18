@@ -17,24 +17,28 @@
 
   <div class="board-wrap">
     <div cdkDropListGroup class="board-columns">
-      <div class="board-column" *ngFor="let column of homepageService.getBoard()">
+      <div class="board-column" *ngFor="let column of homepageService.getBoard$() | async">
         <div class="column-title-wrap">
           <h2 class="column-title">{{column.title | titlecase}}<sup>
-            <a (click)='deleteColumn(column.id)'><mat-icon>delete_outline</mat-icon></a></sup>
+            <a (click)='deleteColumn(column.id)'>
+              <mat-icon>delete_outline</mat-icon>
+            </a></sup>
           </h2>
           
           
-          <app-dialog  question="Add new task">
-            <button mat-fab class="add-task-btn">+Add</button>
+          <!-- add new card  -->
+          <app-dialog (emitText)="onAddCard($event, column.id)" 
+            [question]="'Add new card in ' + column.title + ' column'">
+            <button mat-fab *ngIf="auth.isAuthenticated()">+</button>
           </app-dialog>
-          
         </div>
 
-        <div class="tasks"
-          cdkDropList
-          [cdkDropListData]="column.list"
-          (cdkDropListDropped)="drop($event)"
-        >
+        <div
+        cdkDropList
+        [cdkDropListData]="column.list"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)"
+      >
 
           <div cdkDrag class="task" 
             *ngFor='let item of column.list'>
