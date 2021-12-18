@@ -8,16 +8,8 @@ import { Card, Column } from '../models/models';
 export class HomepageService {
 
   private initBoard = [
-    {
-      id: 1, title: 'Went well', list: [
-      {id: 1, text: 'sample task'}
-      ]
-    },
-    {
-      id: 2, title: 'To do', list: [
-        { id: 1, text: 'sample task' },
-        { id: 2, text: 'sample task' }
-    ] }
+    { id: 1, title: 'Went well', list: [] },
+    { id: 2, title: 'To do', list: [] }
   ]
   private board: Column[] = [...this.initBoard];
   private board$ = new BehaviorSubject<Column[]>(this.board);
