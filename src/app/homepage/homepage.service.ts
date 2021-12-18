@@ -47,11 +47,7 @@ export class HomepageService {
     this.board$.next([...this.board]);
   }
 
-  getList() {
-    return JSON.parse(localStorage.getItem('column') as string);
-  }
-
-  addTask(text: string, columnId: number) {
+  addTask(text: string, id: number) {
     let newTask: any = {
       id: Date.now(),
       text, 
@@ -60,12 +56,12 @@ export class HomepageService {
 
     this.board
       .map((column: Column) => {
-        if (column.id === columnId) {
+        if (column.id === id) {
           column.list.push(newTask);
         }
+        localStorage.setItem('board', JSON.stringify(this.board));
         return column;
       });
-      localStorage.setItem('column', JSON.stringify(this.board));
       this.board$.next([...this.board]);
   } 
 
