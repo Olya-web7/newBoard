@@ -67,12 +67,24 @@ export class HomepageService {
     };
 
     this.board
-      .map((column: Column) => column.list.push(newTask));
-    // localStorage.setItem('column', JSON.stringify(board));
+      .map((column: Column) => {
+        if (column.id === columnId) {
+          column.list.push(newTask);
+        }
+        return column;
+      });
+      localStorage.setItem('column', JSON.stringify(this.board));
+      this.board$.next([...this.board]);
   } 
 
   deleteCard(cardId: number, columnId: number) {
-
+    this.board = this.board.map((column: Column) => {
+      if (column.id === columnId) {
+        column.list = column.list.filter((card: Card) => card.id !== cardId);
+      }
+      return column;
+    });
+    this.board$.next([...this.board]);
   }
   
 }
