@@ -7,10 +7,8 @@ import { Card, Column } from '../models/models';
 })
 export class HomepageService {
 
-  private initBoard = [
-    { id: 1, title: 'Went well', list: [] }
-  ]
-  private board: Column[] = [];
+
+  private board!: Column[];
   private board$ = new BehaviorSubject<Column[]>(this.board);
 
   getBoard$() {
@@ -18,7 +16,7 @@ export class HomepageService {
   }
 
   getBoard() {
-    return JSON.parse(localStorage.getItem('board') as string);
+    return JSON.parse(localStorage.getItem('board') as string) || [];
   }
 
   addColumn(title: string) {
