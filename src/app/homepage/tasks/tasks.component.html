@@ -1,25 +1,23 @@
 <div class="tasks-container">
 
   <div *ngFor="let item of cards" class="tasks-wrap" >
-    <div class="item-text">{{ item.text | titlecase }}</div>
+    <div class="item-text">{{ item.text }}</div>
   </div>
   
   <div class="icon-container">
   
-    <button mat-icon-button>
-      <mat-icon class="icon">favorite_border</mat-icon>
+    <button mat-icon-button (click)='addFavorite(item)'>
+      <mat-icon class="icon">
+        <!-- favorite_border -->
+        {{fav ? 'favorite' : 'favorite_border'}}
+      </mat-icon>
     </button>
     <span></span>
   
-    <button mat-icon-button class="comment-btn" >
+    <button
+      mat-icon-button class="comment-btn" >
       <mat-icon class="icon">comment</mat-icon>
     </button>
-    <span></span>
-  
-    <!-- <button mat-icon-button class="icon-delete" 
-      (click)="onTaskDelete(item.id)">
-      <mat-icon>delete_outline</mat-icon>
-    </button> -->
   </div>
 
 </div>

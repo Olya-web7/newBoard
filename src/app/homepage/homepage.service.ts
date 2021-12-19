@@ -47,6 +47,7 @@ export class HomepageService {
         localStorage.setItem('board', JSON.stringify(this.board));
         return column;
       });
+      localStorage.setItem('board', JSON.stringify(this.board));
       this.board$.next([...this.board]);
   } 
 

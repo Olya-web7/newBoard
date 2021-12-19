@@ -11,6 +11,7 @@ import { HomepageService } from '../homepage.service';
 export class TasksComponent implements OnInit {
 
   cards!: Card[]
+  favorite = []
 
   @Input() item!: Card
   @Output() emitText: EventEmitter<{ id: number; text: string }> = new EventEmitter();
@@ -19,13 +20,27 @@ export class TasksComponent implements OnInit {
   @Output() emitDeleteCard: EventEmitter<number> = new EventEmitter();
   commentInput = ''
   open = false;
+  fav = false;
 
   constructor(
     public auth: AuthService,
-    private homepageService: HomepageService,
+    // private homepageService: HomepageService,
   ) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.favorite = JSON.parse(localStorage.getItem('favorite') as string);
+   }
+  
+  addFavorite(item: Card) {
+    const favorite = this.getFavorite();
+    favorite.push(item.id);
+    this.fav = true;
+    localStorage.setItem('favorite', JSON.stringify(favorite));
+  }
+
+  getFavorite() {
+    return JSON.parse(localStorage.getItem('favorite') as string) || [];
+  }
 
   onOpenComment() {
     this.open = !this.open;
@@ -36,8 +51,8 @@ export class TasksComponent implements OnInit {
     this.commentInput = ''
   }
 
-  onTaskDelete(id: number) {
-    this.emitDeleteCard.emit(id)
-  }
+  // onTaskDelete(id: number) {
+  //   this.emitDeleteCard.emit(id)
+  // }
 
 }

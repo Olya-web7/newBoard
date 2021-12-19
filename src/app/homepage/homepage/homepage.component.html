@@ -25,11 +25,11 @@
             <a (click)='deleteColumn(column.id, column)'>
               <mat-icon>delete_outline</mat-icon>
             </a></sup>
-          </h2>          
+          </h2>
           
           <app-dialog (emitText)="onAddCard($event, column.id)" 
             [question]="'Add new card in ' + column.title + ' column'">
-            <button mat-fab *ngIf="auth.isAuthenticated()">+</button>
+            <button mat-fab *ngIf="auth.isAuthenticated()">+Task</button>
           </app-dialog>
         </div>
 
