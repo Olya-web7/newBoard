@@ -6,7 +6,7 @@
   
   <div class="icon-container">
   
-    <button mat-icon-button (click)='addFavorite(item)'>
+    <button mat-icon-button (click)='addFavorite(item.id)'>
       <mat-icon class="icon">
         <!-- {{ getFavorite().includes(item) ? 'favorite' : 'favorite_border' }} -->
         {{ fav ? 'favorite' : 'favorite_border' }}
