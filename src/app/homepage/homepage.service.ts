@@ -7,7 +7,6 @@ import { Card, Column } from '../models/models';
 })
 export class HomepageService {
 
-
   private board!: Column[];
   private board$ = new BehaviorSubject<Column[]>(this.board);
 
@@ -30,7 +29,7 @@ export class HomepageService {
 
     this.board.push(newColumn);
     localStorage.setItem('board', JSON.stringify(this.board));
-    this.board$.next([...this.board]);
+    this.board$.next([...this.getBoard()]);
   }
 
   addTask(text: string, id: number) {

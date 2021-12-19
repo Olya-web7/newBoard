@@ -11,7 +11,7 @@ import { HomepageService } from '../homepage.service';
   styleUrls: ['./homepage.component.scss']
 })
 export class HomepageComponent implements OnInit {
-  board: Column[] = []
+  board: Column[] = [];
 
   constructor(
     private router: Router,
@@ -29,8 +29,8 @@ export class HomepageComponent implements OnInit {
     }
   }
 
-  deleteColumn(id: number) {
-    let confirmed = confirm(`Do you want to delete the column`);
+  deleteColumn(id: number, column: Column) {
+    let confirmed = confirm(`Do you want to delete the column ${column.title}`);
     if (confirmed) {
       this.homepageService.deleteColumn(id);
     }
