@@ -1,7 +1,6 @@
 import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 import { AuthService } from 'src/app/auth/auth.service';
 import { Card } from 'src/app/models/models';
-import { HomepageService } from '../homepage.service';
 
 @Component({
   selector: 'app-tasks',
@@ -11,13 +10,11 @@ import { HomepageService } from '../homepage.service';
 export class TasksComponent implements OnInit {
 
   cards!: Card[]
-  favorite = []
+  favorite = [];
 
-  @Input() item: any;
+  @Input() item!: Card;
   @Output() emitText: EventEmitter<{ id: number; text: string }> = new EventEmitter();
-  
-  @Output() emitCardItem: EventEmitter<{task: Card}> = new EventEmitter();
-  @Output() emitDeleteCard: EventEmitter<number> = new EventEmitter();
+
   commentInput = ''
   open = false;
   fav = false;
@@ -28,7 +25,7 @@ export class TasksComponent implements OnInit {
 
   ngOnInit() {
     this.favorite = JSON.parse(localStorage.getItem('favorite') as string);
-   }
+  }
   
   addFavorite(item: Card) {
     const favorite = this.getFavorite();
@@ -44,8 +41,6 @@ export class TasksComponent implements OnInit {
   onOpenComment() {
     this.open = !this.open;
   }
-
-  onCommentTextEmit(id: number) {}
 
   onCommentTextEmmit(id: number) {
     this.emitText.emit({ id, text: this.commentInput });

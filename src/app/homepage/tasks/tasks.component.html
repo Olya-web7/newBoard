@@ -8,7 +8,7 @@
   
     <button mat-icon-button (click)='addFavorite(item)'>
       <mat-icon class="icon">
-        {{fav ? 'favorite' : 'favorite_border'}}
+        {{ fav ? 'favorite' : 'favorite_border' }}
       </mat-icon>
     </button>
     <span></span>
@@ -20,15 +20,16 @@
   </div>
 
   <div *ngIf="open">
-    <mat-form-field class="w-100 mb-2">      
-      <input matInput [(ngModel)]="commentInput" (mousedown)="$event.stopPropagation()">
+    <mat-form-field>
+      <input matInput [(ngModel)]="commentInput" 
+        (mousedown)="$event.stopPropagation()">
       <button
         mat-button
         *ngIf="commentInput"
         matSuffix
         mat-icon-button
         class="icon-confirm"
-        (click)="onCommentTextEmit(item.id)"
+        (click)="onCommentTextEmmit(item.id)"
       >
         <mat-icon>done</mat-icon>
       </button>

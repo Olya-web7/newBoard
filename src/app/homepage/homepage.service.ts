@@ -58,12 +58,21 @@ export class HomepageService {
     this.board$.next([...this.board]);
   }
 
-  deleteTask(cardId: number, columnId: number) {
-    this.board = this.board.map((column: Column) => {
+  addComment(columnId: number, cardId: number, text: string) {
+    this.board = this.board.map((column: any) => {
       if (column.id === columnId) {
-        column.list = column.list.filter((card: Card) => card.id !== cardId);
+        const list = column.list.map((item: any) => {
+          if (item.id === cardId) {
+            let newComment = {
+              id: Date.now(),
+              text,
+            };
+            item.comments.push(newComment);
+          }
+          return item;
+        });
+        column.list = list;
       }
-      localStorage.setItem('board', JSON.stringify(this.board));
       return column;
     });
     this.board$.next([...this.board]);

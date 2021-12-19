@@ -43,6 +43,10 @@ export class HomepageComponent implements OnInit {
     }
   }
 
+    onAddComment(event: { id: number, text: string }, columnId: number) {
+    this.homepageService.addComment(columnId, event.id, event.text)
+  }
+
   logout(event: Event) {
     event.preventDefault();
     this.auth.logout();

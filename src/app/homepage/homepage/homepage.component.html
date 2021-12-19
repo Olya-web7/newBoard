@@ -39,15 +39,14 @@
 
           <div cdkDrag class="task" 
             *ngFor='let item of column.list'>
-            <!-- {{item.text}} -->
-            <app-tasks [item]="item">
+            {{item.text}}
+            <app-tasks [item]="item" (emitText)="onAddComment($event, column.id)">
               <div *ngFor='let comment of item.comments'>
                 <app-comment [comment]="comment"></app-comment>
               </div>
             </app-tasks>
           </div>
         </div>
-        
       </div>
     </div>
   </div>
