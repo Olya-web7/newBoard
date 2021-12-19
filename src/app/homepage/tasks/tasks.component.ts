@@ -24,7 +24,6 @@ export class TasksComponent implements OnInit {
 
   constructor(
     public auth: AuthService,
-    // private homepageService: HomepageService,
   ) { }
 
   ngOnInit() {
@@ -33,7 +32,7 @@ export class TasksComponent implements OnInit {
   
   addFavorite(item: Card) {
     const favorite = this.getFavorite();
-    favorite.push(item.id);
+    favorite.push(item);
     this.fav = true;
     localStorage.setItem('favorite', JSON.stringify(favorite));
   }
@@ -50,9 +49,5 @@ export class TasksComponent implements OnInit {
     this.emitText.emit({ id, text: this.commentInput });
     this.commentInput = ''
   }
-
-  // onTaskDelete(id: number) {
-  //   this.emitDeleteCard.emit(id)
-  // }
 
 }

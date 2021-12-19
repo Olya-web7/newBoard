@@ -8,14 +8,13 @@
   
     <button mat-icon-button (click)='addFavorite(item)'>
       <mat-icon class="icon">
-        <!-- favorite_border -->
         {{fav ? 'favorite' : 'favorite_border'}}
       </mat-icon>
     </button>
     <span></span>
   
     <button
-      mat-icon-button class="comment-btn" >
+      mat-icon-button class="comment-btn" (click)="open=!open">
       <mat-icon class="icon">comment</mat-icon>
     </button>
   </div>
