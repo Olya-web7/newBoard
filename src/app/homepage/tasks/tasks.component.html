@@ -8,8 +8,7 @@
   
     <button mat-icon-button (click)='addFavorite(item.id)'>
       <mat-icon class="icon">
-        <!-- {{ getFavorite().includes(item) ? 'favorite' : 'favorite_border' }} -->
-        {{ fav ? 'favorite' : 'favorite_border' }}
+        {{ getFavorite().includes(item.id) ? 'favorite' : 'favorite_border' }}
       </mat-icon>
     </button>
     <span></span>

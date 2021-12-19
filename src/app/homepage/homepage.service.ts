@@ -68,6 +68,8 @@ export class HomepageService {
               text,
             };
             item.comments.push(newComment);
+            localStorage.setItem('board', JSON.stringify(this.board));
+
           }
           return item;
         });

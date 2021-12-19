@@ -17,7 +17,6 @@ export class TasksComponent implements OnInit {
 
   commentInput = ''
   open = false;
-  fav = false;
 
   constructor(
     public auth: AuthService,
@@ -29,7 +28,6 @@ export class TasksComponent implements OnInit {
   addFavorite(id: number) {
     const favorite = this.getFavorite();
     favorite.push(id);
-    this.fav = true;
     localStorage.setItem('favorite', JSON.stringify(favorite));
   }
 
@@ -37,13 +35,9 @@ export class TasksComponent implements OnInit {
     return JSON.parse(localStorage.getItem('favorite') as string) || [];
   }
 
-  onOpenComment() {
-    this.open = !this.open;
-  }
-
   onCommentTextEmmit(id: number) {
     this.emitText.emit({ id, text: this.commentInput });
-    this.commentInput = ''
+    this.commentInput = '';
   }
 
 }
