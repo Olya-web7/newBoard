@@ -21,7 +21,7 @@ export class HomepageComponent implements OnInit {
   ) { } 
 
   ngOnInit() {
-    this.board = JSON.parse(localStorage.getItem('board') as string);
+    // this.board = JSON.parse(localStorage.getItem('board') as string);
   }
 
   addColumn(event: string) {
@@ -31,7 +31,7 @@ export class HomepageComponent implements OnInit {
   }
 
   deleteColumn(id: number, column: Column) {
-    let confirmed = confirm(`Do you want to delete the column ${column.title}`);
+    let confirmed = confirm(`Do you really want to delete the column ${column.title}?`);
     if (confirmed) {
       this.homepageService.deleteColumn(id);
     }
@@ -43,9 +43,9 @@ export class HomepageComponent implements OnInit {
     }
   }
 
-  // onDeleteTask(cardId: number, columnId: number) {
-  //   this.homepageService.deleteTask(cardId, columnId)
-  // }
+    onAddComment(event: { id: number, text: string }, columnId: number) {
+    this.homepageService.addComment(columnId, event.id, event.text)
+  }
 
   logout(event: Event) {
     event.preventDefault();

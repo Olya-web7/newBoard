@@ -10,7 +10,7 @@
   </div>
   <div class="board">
     <app-dialog (emitText)="addColumn($event)">
-      <button mat-fab *ngIf="auth.isAuthenticated()">+Add</button>
+      <button mat-fab>+Add</button>
     </app-dialog>
     
   </div>
@@ -18,8 +18,6 @@
   <div class="board-wrap">
     <div cdkDropListGroup class="board-columns">
       <div class="board-column" *ngFor="let column of homepageService.getBoard$() | async">
-        <!-- <div class="board-column" *ngFor="let column of board"> -->
-
         <div class="column-title-wrap">
           <h2 class="column-title">{{column.title | titlecase}}<sup>
             <a (click)='deleteColumn(column.id, column)'>
@@ -29,7 +27,7 @@
           
           <app-dialog (emitText)="onAddCard($event, column.id)" 
             [question]="'Add new card in ' + column.title + ' column'">
-            <button mat-fab *ngIf="auth.isAuthenticated()">+Task</button>
+            <button mat-fab class="add-task-btn">+Task</button>
           </app-dialog>
         </div>
 
@@ -41,15 +39,14 @@
 
           <div cdkDrag class="task" 
             *ngFor='let item of column.list'>
-            <!-- {{item.text}} -->
-            <app-tasks [item]="item">
+            {{item.text}}
+            <app-tasks [item]="item" (emitText)="onAddComment($event, column.id)">
               <div *ngFor='let comment of item.comments'>
                 <app-comment [comment]="comment"></app-comment>
               </div>
             </app-tasks>
           </div>
         </div>
-        
       </div>
     </div>
   </div>
