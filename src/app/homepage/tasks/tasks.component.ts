@@ -13,7 +13,7 @@ export class TasksComponent implements OnInit {
   cards!: Card[]
   favorite = []
 
-  @Input() item!: Card
+  @Input() item: any;
   @Output() emitText: EventEmitter<{ id: number; text: string }> = new EventEmitter();
   
   @Output() emitCardItem: EventEmitter<{task: Card}> = new EventEmitter();
@@ -44,6 +44,8 @@ export class TasksComponent implements OnInit {
   onOpenComment() {
     this.open = !this.open;
   }
+
+  onCommentTextEmit(id: number) {}
 
   onCommentTextEmmit(id: number) {
     this.emitText.emit({ id, text: this.commentInput });

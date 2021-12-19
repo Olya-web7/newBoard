@@ -14,9 +14,29 @@
     <span></span>
   
     <button
-      mat-icon-button class="comment-btn" (click)="open=!open">
+      mat-icon-button class="comment-btn" disableRipple (click)="open = !open">
       <mat-icon class="icon">comment</mat-icon>
     </button>
   </div>
+
+  <div *ngIf="open">
+    <mat-form-field class="w-100 mb-2">
+      <mat-label>Leave a comment</mat-label>
+      <input matInput [(ngModel)]="commentInput" (mousedown)="$event.stopPropagation()">
+      <button
+        mat-button
+        *ngIf="commentInput"
+        matSuffix
+        mat-icon-button
+        class="icon-confirm"
+        (click)="onCommentTextEmit(item.id)"
+      >
+        <mat-icon>done</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <ng-content></ng-content>
+  </div>
+
 
 </div>
