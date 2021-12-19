@@ -24,10 +24,9 @@ export class TasksComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // this.favorite = JSON.parse(localStorage.getItem('favorite') as string);
   }
   
-  addFavorite(item: Card) {
+  addFavorite(item: any) {
     const favorite = this.getFavorite();
     favorite.push(item);
     this.fav = true;

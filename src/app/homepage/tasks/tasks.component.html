@@ -8,6 +8,7 @@
   
     <button mat-icon-button (click)='addFavorite(item)'>
       <mat-icon class="icon">
+        <!-- {{ getFavorite().includes(item) ? 'favorite' : 'favorite_border' }} -->
         {{ fav ? 'favorite' : 'favorite_border' }}
       </mat-icon>
     </button>
