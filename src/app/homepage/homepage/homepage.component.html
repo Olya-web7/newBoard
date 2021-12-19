@@ -43,9 +43,9 @@
             *ngFor='let item of column.list'>
             <!-- {{item.text}} -->
             <app-tasks [item]="item">
-              <!-- <div *ngFor='let comment of item.comments'> -->
-                <app-comment></app-comment>
-              <!-- </div> -->
+              <div *ngFor='let comment of item.comments'>
+                <app-comment [comment]="comment"></app-comment>
+              </div>
             </app-tasks>
           </div>
         </div>

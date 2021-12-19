@@ -6,7 +6,8 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./comment.component.scss']
 })
 export class CommentComponent implements OnInit {
-  @Input() comment!: Comment;
+  @Input() comment: any;
+  
   @Output() emitComment: EventEmitter<Comment> = new EventEmitter();
 
   constructor() { }

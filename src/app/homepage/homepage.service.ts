@@ -7,8 +7,8 @@ import { Card, Column } from '../models/models';
 })
 export class HomepageService {
 
-  private board!: Column[];
-  private board$ = new BehaviorSubject<Column[]>(this.board);
+  private board: Column[] = this.getBoard();
+  private board$ = new BehaviorSubject<Column[]>(this.getBoard());
 
   getBoard$() {
     return this.board$.asObservable()
