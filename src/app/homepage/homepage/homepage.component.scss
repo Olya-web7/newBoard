@@ -124,3 +124,7 @@ button {
 .navbar {
   min-height: 5em !important;
 }
+
+::ng-deep mat-input-element {
+  caret-color: #60cee9 !important;
+}

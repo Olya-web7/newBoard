@@ -20,8 +20,7 @@
   </div>
 
   <div *ngIf="open">
-    <mat-form-field class="w-100 mb-2">
-      <mat-label>Leave a comment</mat-label>
+    <mat-form-field class="w-100 mb-2">      
       <input matInput [(ngModel)]="commentInput" (mousedown)="$event.stopPropagation()">
       <button
         mat-button
