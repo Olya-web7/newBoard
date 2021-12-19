@@ -25,7 +25,7 @@ export class TasksComponent implements OnInit {
     private homepageService: HomepageService,
   ) { }
 
-  ngOnInit(): void { }
+  ngOnInit() {}
 
   onOpenComment() {
     this.open = !this.open;
