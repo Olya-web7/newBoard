@@ -11,7 +11,7 @@ import { HomepageService } from '../homepage.service';
   styleUrls: ['./homepage.component.scss']
 })
 export class HomepageComponent implements OnInit {
-  board!: Column[]
+  board: Column[] = []
 
   constructor(
     private router: Router,
@@ -20,7 +20,7 @@ export class HomepageComponent implements OnInit {
   ) { } 
 
   ngOnInit() {
-    return this.homepageService.getBoard();
+    this.board = JSON.parse(localStorage.getItem('board') as string);
   }
 
   addColumn(event: string) {
@@ -29,8 +29,8 @@ export class HomepageComponent implements OnInit {
     }
   }
 
-  deleteColumn(id: any) {
-    let confirmed = confirm(`Do you want to delete the column ${id}`);
+  deleteColumn(id: number) {
+    let confirmed = confirm(`Do you want to delete the column`);
     if (confirmed) {
       this.homepageService.deleteColumn(id);
     }
@@ -42,8 +42,8 @@ export class HomepageComponent implements OnInit {
     }
   }
 
-  onDelete(cardId: number, columnId: number) {
-    this.homepageService.deleteCard(cardId, columnId)
+  onDeleteTask(cardId: number, columnId: number) {
+    this.homepageService.deleteTask(cardId, columnId)
   }
 
   logout(event: Event) {
