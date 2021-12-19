@@ -7,23 +7,12 @@ import { Card, Column } from '../models/models';
 })
 export class HomepageService {
 
-  private initBoard = [
-    {
-      id: 1, title: 'Went well', list: [
-        { text: 'sample task' },
-    ] },
-    {
-      id: 2, title: 'To do', list: [
-        { text: 'sample task' },
-        { text: 'sample task' },
-    ] }
-  ]
-  private board: Column[] = this.initBoard
-  // private board$ = new BehaviorSubject<Column[]>(this.initBoard)
+  private board!: Column[];
+  private board$ = new BehaviorSubject<Column[]>(this.board);
 
-  // getBoard$() {  
-  //   return this.board$.asObservable();
-  // }  
+  getBoard$() {
+    return this.board$.asObservable()
+  }
 
   getBoard() {
     return JSON.parse(localStorage.getItem('board') as string) || [];
@@ -36,11 +25,47 @@ export class HomepageService {
       list: [],
     };
 
-    this.board = [...this.getBoard(), newColumn];
+    this.board = this.getBoard();
+
+    this.board.push(newColumn);
     localStorage.setItem('board', JSON.stringify(this.board));
-    // this.board$.next([...this.getBoard()]);
+    this.board$.next([...this.getBoard()]);
   }
 
-  addCard(text: string, columnId: number) { } 
+  addTask(text: string, id: number) {
+    let newTask: Card = {
+      id: Date.now(),
+      text, 
+      comments: [],
+    };
+
+    this.board
+      .map((column: Column) => {
+        if (column.id === id) {
+          column.list.push(newTask);
+        }
+        localStorage.setItem('board', JSON.stringify(this.board));
+        return column;
+      });
+      this.board$.next([...this.board]);
+  } 
+
+  deleteColumn(id: number) {
+    this.board = this.board
+      .filter((column: Column) => column.id != id);
+    localStorage.setItem('board', JSON.stringify(this.board));
+    this.board$.next([...this.board]);
+  }
+
+  deleteTask(cardId: number, columnId: number) {
+    this.board = this.board.map((column: Column) => {
+      if (column.id === columnId) {
+        column.list = column.list.filter((card: Card) => card.id !== cardId);
+      }
+      localStorage.setItem('board', JSON.stringify(this.board));
+      return column;
+    });
+    this.board$.next([...this.board]);
+  }
   
 }

@@ -1,38 +1,8 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
 import { Card, Column } from './models/models';
 
 @Injectable({providedIn: 'root'})
 export class BoardService {
-
-  private initBoard = [
-    { id: 1, title: 'Went well', color: '#009785', list: [] },
-    { id: 2, title: 'To do', color: '#912f84', list: [] },
-    { id: 3, title: 'To improve', color: '#e82b63', list: [] },
-  ]
-  private board: Column[] = this.initBoard
-  private board$ = new BehaviorSubject<Column[]>(this.initBoard)
-
-  getBoard$() {
-    return this.board$.asObservable();
-  } 
-
-  addColumn(title: string) {
-    let newColumn: Column = {
-      id: Date.now(),
-      title: title,
-      list: [],
-    };
-    if (localStorage.getItem('board') == null) {
-      this.board = [...this.board, newColumn];
-      localStorage.setItem('board', JSON.stringify(this.board));
-    } else {
-      this.board = JSON.parse(localStorage.getItem('board') as string);
-      this.board = [...this.board, newColumn];
-      localStorage.setItem('board', JSON.stringify(this.board));
-    }    
-    this.board$.next([...this.board]);
-  }
 
   addCard(text: string, columnId: number) {
     let newCard: Card = {
