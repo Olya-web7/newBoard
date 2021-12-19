@@ -12,6 +12,7 @@ import { HomepageService } from '../homepage.service';
 })
 export class HomepageComponent implements OnInit {
   board: Column[] = [];
+  favorite = JSON.parse(localStorage.getItem('favorite') as string);
 
   constructor(
     private router: Router,
@@ -42,9 +43,9 @@ export class HomepageComponent implements OnInit {
     }
   }
 
-  onDeleteTask(cardId: number, columnId: number) {
-    this.homepageService.deleteTask(cardId, columnId)
-  }
+  // onDeleteTask(cardId: number, columnId: number) {
+  //   this.homepageService.deleteTask(cardId, columnId)
+  // }
 
   logout(event: Event) {
     event.preventDefault();

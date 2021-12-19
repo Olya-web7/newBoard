@@ -7,8 +7,8 @@ import { Card, Column } from '../models/models';
 })
 export class HomepageService {
 
-  private board!: Column[];
-  private board$ = new BehaviorSubject<Column[]>(this.board);
+  private board: Column[] = this.getBoard();
+  private board$ = new BehaviorSubject<Column[]>(this.getBoard());
 
   getBoard$() {
     return this.board$.asObservable()
@@ -47,6 +47,7 @@ export class HomepageService {
         localStorage.setItem('board', JSON.stringify(this.board));
         return column;
       });
+      localStorage.setItem('board', JSON.stringify(this.board));
       this.board$.next([...this.board]);
   } 
 

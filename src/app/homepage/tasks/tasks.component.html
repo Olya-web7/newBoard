@@ -1,25 +1,41 @@
 <div class="tasks-container">
 
   <div *ngFor="let item of cards" class="tasks-wrap" >
-    <div class="item-text">{{ item.text | titlecase }}</div>
+    <div class="item-text">{{ item.text }}</div>
   </div>
   
   <div class="icon-container">
   
-    <button mat-icon-button>
-      <mat-icon class="icon">favorite_border</mat-icon>
+    <button mat-icon-button (click)='addFavorite(item)'>
+      <mat-icon class="icon">
+        {{fav ? 'favorite' : 'favorite_border'}}
+      </mat-icon>
     </button>
     <span></span>
   
-    <button mat-icon-button class="comment-btn" >
+    <button
+      mat-icon-button class="comment-btn" disableRipple (click)="open = !open">
       <mat-icon class="icon">comment</mat-icon>
     </button>
-    <span></span>
-  
-    <!-- <button mat-icon-button class="icon-delete" 
-      (click)="onTaskDelete(item.id)">
-      <mat-icon>delete_outline</mat-icon>
-    </button> -->
   </div>
+
+  <div *ngIf="open">
+    <mat-form-field class="w-100 mb-2">      
+      <input matInput [(ngModel)]="commentInput" (mousedown)="$event.stopPropagation()">
+      <button
+        mat-button
+        *ngIf="commentInput"
+        matSuffix
+        mat-icon-button
+        class="icon-confirm"
+        (click)="onCommentTextEmit(item.id)"
+      >
+        <mat-icon>done</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <ng-content></ng-content>
+  </div>
+
 
 </div>

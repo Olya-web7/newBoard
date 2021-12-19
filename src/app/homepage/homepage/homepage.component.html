@@ -25,25 +25,28 @@
             <a (click)='deleteColumn(column.id, column)'>
               <mat-icon>delete_outline</mat-icon>
             </a></sup>
-          </h2>          
+          </h2>
           
           <app-dialog (emitText)="onAddCard($event, column.id)" 
             [question]="'Add new card in ' + column.title + ' column'">
-            <button mat-fab *ngIf="auth.isAuthenticated()">+</button>
+            <button mat-fab *ngIf="auth.isAuthenticated()">+Task</button>
           </app-dialog>
         </div>
 
         <div
         cdkDropList
         [cdkDropListData]="column.list"
-        class="example-list"
         (cdkDropListDropped)="drop($event)"
       >
 
           <div cdkDrag class="task" 
             *ngFor='let item of column.list'>
-            {{item.text}}
-            <app-tasks [item]="item"></app-tasks>
+            <!-- {{item.text}} -->
+            <app-tasks [item]="item">
+              <div *ngFor='let comment of item.comments'>
+                <app-comment [comment]="comment"></app-comment>
+              </div>
+            </app-tasks>
           </div>
         </div>
         

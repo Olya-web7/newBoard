@@ -11,7 +11,8 @@ import { RouterModule } from "@angular/router";
 import { TasksComponent } from './tasks/tasks.component';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from "@angular/forms";
-import { MatDialogModule } from '@angular/material/dialog'; 
+import { MatDialogModule } from '@angular/material/dialog';
+import { CommentComponent } from './comment/comment.component'; 
 
 const routes = [
   { path: '', component: HomepageComponent }
@@ -20,7 +21,8 @@ const routes = [
 @NgModule({
   declarations: [
     HomepageComponent,
-    TasksComponent
+    TasksComponent,
+    CommentComponent
   ],
   imports: [
     CommonModule,
